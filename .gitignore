@@ -6,4 +6,4 @@ core*
 extern/template/*
 input/wiise_coverage.csv
 input/gbd/gbd21_raw.csv
-output*
+
