@@ -6,23 +6,11 @@
 ###########################################################
 
 # ---- R version check ----
-
-# R versions for which this project has been tested and is stable
-stable_versions = c("4.3.0", "4.3.2")
-
-# R versions for which this project is stable (as a string)
-stable_str = paste(stable_versions, collapse = ", ")
-
 # Get details of R version currently running
 version_info = R.Version()
 
 # Construct version number from list details
 version_num = paste0(version_info$major, ".",  version_info$minor)
-
-# Throw an error if this R version is unsuitable
-if (!version_num %in% stable_versions)
-  stop("This software is stable with R version(s): ", stable_str,
-       " (currently running ", version_num, ")")
 
 # Clear global environment
 rm(list = ls())
@@ -35,6 +23,7 @@ no_src = c("launch.R", "dependencies.R")
 # All R files, and those to source
 all_files = list.files(pattern = ".+\\.R$")
 src_files = setdiff(all_files, no_src)
+src_files = src_files[!grepl("PREVAIL", src_files)]
 
 # Source each of these files
 for (file in src_files)
@@ -50,6 +39,7 @@ packages = c(
   "gsubfn",         # Output multiple variables from functions
   "magrittr",       # Additional pipe operators, such as %<>%
   "wrapr",          # Convenience functions (eg qc)
+  "rio",            # Reading in data
   "matrixStats",    # Matrix row and column operations
   "stats",          # Statistical calculations and random number generation
   "stats4",         # MLE algorithm

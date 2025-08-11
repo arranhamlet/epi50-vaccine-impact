@@ -136,11 +136,11 @@ coverage_wiise = function(vimc_countries_dt) {
   # ---- Load data ----
   
   # File path for already-downloaded WIISE coverage data
-  raw_file = paste0(o$pth$input, "wiise_coverage.csv")
+  raw_file = paste0(o$pth$input, "coverage-data.xlsx")
   
   # If file has already been downloaded, read it now
   if (file.exists(raw_file)) {
-    raw_dt = fread(raw_file)
+    raw_dt = import(raw_file)
     
   } else {  # Otherwise we'll need to download
     
